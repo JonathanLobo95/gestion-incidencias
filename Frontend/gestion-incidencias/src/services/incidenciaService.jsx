@@ -13,6 +13,7 @@ export const createIncidencia = async (incidencia) => {
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(incidencia)
     });
+    if(!response.ok) throw new Error ("Error al crear la incidencia");
     return await response.json();
 }
 
