@@ -42,6 +42,12 @@ public List<Incidencia> listar() {
         service.eliminar(id);
 }
 
-
+//actualizar incidencia
+@PutMapping("/{id}")
+    public Incidencia actualizar(@PathVariable Long id, @RequestBody Incidencia detalles) {
+        Incidencia incidencia = service.obtenerPorId(id);
+        incidencia.setEstado(detalles.getEstado()); // Solo actualizamos el estado por ahora
+        return service.crearIncidencia(incidencia); // save() sirve para actualizar si el ID existe
+}
 
 }

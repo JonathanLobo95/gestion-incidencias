@@ -20,3 +20,14 @@ export const createIncidencia = async (incidencia) => {
 export const deleteIncidencia = async (id) => {
     await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
 };
+
+export const updateIncidencia = async (id, incidencia) => {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(incidencia)
+
+    });
+    if(!response.ok) throw new Error ("Error al actualizar la incidencia");
+    return await response.json();
+};
