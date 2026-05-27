@@ -1,33 +1,64 @@
 package com.gestion.partes.controller;
 
+import com.gestion.partes.context.TenantContext;
+import com.gestion.partes.dto.IncidentEvent;
 import com.gestion.partes.model.Incidencia;
 import com.gestion.partes.repository.IncidenciaRepository;
 import com.gestion.partes.service.IncidenciaService;
+import com.gestion.partes.service.KafkaProducerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/incidencias")
-@CrossOrigin(origins= "http://localhost:5173") // para conectar con React
+@Tag(name = "Incidencias", description = "Gestión de tockets con soporte Multi-tenant y kafka")
 public class IncidenciaController {
     private final IncidenciaService service;
+    private final KafkaProducerService kafkaProducer;
 
-    public IncidenciaController(IncidenciaService service) {
+    //no hace falta el c0onstructor al poner el @ArgsConstruvtor
+    public IncidenciaController(IncidenciaService service, KafkaProducerService kafkaProducer) {
         this.service = service;
+        this.kafkaProducer = kafkaProducer;
     }
+
+
+
 
     // Listar todas
 @GetMapping
+@Operation(summary = "Listar incidencia de la empresa actual")
 public List<Incidencia> listar() {
         return service.listarTodas();
 }
 
 //crear incidencia
 @PostMapping
+@Operation(summary = "crear incidencia y disparar evento a Kafka para IA ")
     public Incidencia guardar(@RequestBody Incidencia incidencia) {
-        return service.crearIncidencia(incidencia);
+    // 1. Capturamos el TenantID del contexto (puesto ahí por el Interceptor)
+    String currentTenant = TenantContext.getCurrentTenant();
+    incidencia.setTenantId(currentTenant);
+
+    // 2. Guardamos en la base de datos
+    Incidencia guardada = service.crearIncidencia(incidencia);
+
+    // 3. Enviamos el evento a Kafka para que la IA lo procese asíncronamente
+    IncidentEvent evento = new IncidentEvent(
+            guardada.getId(),
+            guardada.getTitulo(),
+            guardada.getDescripcion(),
+            guardada.getTenantId()
+
+            );
+    kafkaProducer.sendIncidentEvent(evento);
+
+    return guardada;
 }
 
 //obtener por ID
