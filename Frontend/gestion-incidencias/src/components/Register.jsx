@@ -12,19 +12,20 @@ const Register = ({ onRegisterSuccess }) => {
 const [error, setError] = useState('');
 const [success, setSuccess] = useState(false);
 
-const handleChange = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess(false);
-
+const handleChange = (e) => {
+        setFormData({ 
+            ...formData, 
+            [e.target.name]: e.target.value 
+        });
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess(false);
 
-    try {
-        await api.post('/auth/register', {
-   nombre: formData.nombre,
+        try {
+            await api.post('/auth/register', {
+                nombre: formData.nombre,
                 email: formData.email,
                 password: formData.password
             }, {
@@ -32,15 +33,18 @@ const handleChange = async (e) => {
             });
 
             setSuccess(true);
-            //después de 2 segundos redifgiremos al login
+            
+            // Después de 2 segundos redirigimos al login
             setTimeout(() => {
-                onRegisterSuccess()
+                onRegisterSuccess();
             }, 2000);
-} catch (err){
-    console.error(err);
-setError(err.response?.data?.message || 'Error al registrar el usuario. Comprueba los datos.');
+
+        } catch (err) {
+            console.error(err);
+            setError(err.response?.data?.message || 'Error al registrar el usuario. Comprueba los datos.');
         }
     };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
             <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
@@ -120,8 +124,6 @@ setError(err.response?.data?.message || 'Error al registrar el usuario. Comprueb
             </div>
         </div>
     );
-};
-
 };
 
 export default Register;
