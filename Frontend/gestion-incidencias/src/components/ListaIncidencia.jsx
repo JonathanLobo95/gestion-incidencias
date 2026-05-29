@@ -2,20 +2,21 @@ import React from 'react';
 
 const ListaIncidencia = ({ incidencias, alEliminar, alCambiarEstado }) => {
     
-    // Función para asignar color según el estado
+    // Función para asignar color según el estado (¡Actualizada con los estados de la IA!)
     const getBadgeClass = (estado) => {
         switch (estado) {
-            case 'PENDIENTE': return 'bg-danger';   // Rojo
-            case 'EN_PROCESO': return 'bg-warning text-dark'; // Amarillo
-            case 'RESUELTA': return 'bg-success';  // Verde
-            default: return 'bg-secondary';
+            case 'PENDIENTE': return 'bg-danger text-white';
+            case 'URGENTE': return 'bg-danger font-weight-bold text-white animate-pulse'; // Por si la IA detecta criticidad
+            case 'EN_PROCESO': case 'PROCESADA_POR_IA': return 'bg-warning text-dark';
+            case 'RESUELTA': return 'bg-success text-white';
+            default: return 'bg-secondary text-white';
         }
     };
 
     if (incidencias.length === 0) {
         return (
             <div className="alert alert-info text-center shadow-sm">
-                No hay incidencias que coincidan con el filtro. 
+                No hay incidencias registradas para esta empresa.
             </div>
         );
     }
@@ -25,42 +26,53 @@ const ListaIncidencia = ({ incidencias, alEliminar, alCambiarEstado }) => {
             {incidencias.map(inc => (
                 <div className="col" key={inc.id}>
                     <div className="card h-100 shadow-sm border-0">
+                        
+                        {/* Cabecera de la Tarjeta */}
                         <div className="card-header d-flex justify-content-between align-items-center bg-white border-bottom-0 pt-3">
                             <span className={`badge rounded-pill ${getBadgeClass(inc.estado)}`}>
-                                {inc.estado.replace('_', ' ')}
+                                {inc.estado ? inc.estado.replace('_', ' ') : 'PENDIENTE'}
                             </span>
                             <small className="text-muted">ID: #{inc.id}</small>
                         </div>
+                        
+                        {/* Cuerpo */}
                         <div className="card-body">
-                            <h5 className="card-title fw-bold text-dark">{inc.titulo}</h5>
+                            <h5 className="card-title fw-bold text-dark text-capitalize">{inc.titulo}</h5>
                             <p className="card-text text-secondary" style={{ fontSize: '0.9rem' }}>
                                 {inc.descripcion}
                             </p>
                         </div>
+                        
+                        {/* Pie de Tarjeta con Acciones */}
                         <div className="card-footer bg-white border-top-0 pb-3 d-flex justify-content-between align-items-center">
                             <small className="text-muted">
-                                📅 {new Date(inc.fechaCreacion).toLocaleDateString()}
+                                📅 {inc.fechaCreacion ? new Date(inc.fechaCreacion).toLocaleDateString() : 'Reciente'}
                             </small>
-                            <button 
-                                className="btn btn-outline-danger btn-sm border-0"
-                                onClick={() => alEliminar(inc.id)}
-                                title="Eliminar incidencia"
-                            >
-                                🗑️ Borrar
-                            </button>
-                            {/* BOTÓN DE CAMBIO DE ESTADO */}
+                            
+                            <div className="d-flex gap-2">
+                                {/* Botón de cambio de estado dinámico */}
                                 {inc.estado !== 'RESUELTA' && (
                                     <button
-                                        className="className={`btn btn-sm shadow-sm ${inc.estado === 'PENDIENTE' ? 'btn-outline-warning' : 'btn-outline-success'}`}"
-                                        onClick={() => alCambiarEstado}
+                                        // 🛠️ CORREGIDO: Sintaxis de strings limpios para Bootstrap
+                                        className={`btn btn-sm shadow-sm ${inc.estado === 'PENDIENTE' ? 'btn-outline-warning' : 'btn-outline-success'}`}
+                                        // 🛠️ CORREGIDO: Ahora le envía al padre el ID y el estado actual para calcular el siguiente
+                                        onClick={() => alCambiarEstado(inc.id, inc.estado)}
                                     >
                                         {inc.estado === 'PENDIENTE' ? 'Atender' : '✅ Resolver'}
                                     </button>
                                 )}
+
+                                {/* Botón de eliminación */}
+                                <button 
+                                    className="btn btn-outline-danger btn-sm border-0"
+                                    onClick={() => alEliminar(inc.id)}
+                                    title="Eliminar incidencia"
+                                >
+                                    🗑️ Borrar
+                                </button>
+                            </div>
                         </div>
-                        <small clasName="text-muted" style={{fontSize: 'o.75rem'}}>
-                            📅 {new Date(inc.fechaCreacion).toLocaleDateString()}
-                        </small>
+                        {/* 🛠️ CORREGIDO: Se eliminó el bloque duplicado y roto que colgaba aquí abajo */}
                     </div>
                 </div>
             ))}

@@ -1,33 +1,25 @@
-const API_URL = "http://localhost:8080/api/incidencias";
+import api from '../api/axios';
 
 export const getIncidencias = async () => {
-    const response = await fetch(API_URL);
-    if(!response.ok) throw new Error ("Error al obtener incidencias");
-    return await response.json();
+    const response = await api.get('incidencias');
+    return response.data;
 
 };
 
+//Método para crear una nueva incidencia
 export const createIncidencia = async (incidencia) => {
-    const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(incidencia)
-    });
-    if(!response.ok) throw new Error ("Error al crear la incidencia");
-    return await response.json();
-}
-
-export const deleteIncidencia = async (id) => {
-    await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+    const response = await api.post('/incidencias', incidencia);
+    return response.data;
 };
 
-export const updateIncidencia = async (id, incidencia) => {
-    const response = await fetch(`${API_URL}/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(incidencia)
+//Métofo para eliminar incidencia
+export const deleteIncidencia = async (id) => {
+    await api.delete (`/incidencias/${id}`);
 
-    });
-    if(!response.ok) throw new Error ("Error al actualizar la incidencia");
-    return await response.json();
+};
+
+//Método para actualizar una incidencia
+export const updateIncidencia = async (id, incidencia) => {
+    const response = await api.put(`/incidencias/${id}`, incidencia);
+    return response.data;
 };
