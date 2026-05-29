@@ -1,28 +1,28 @@
-import React, { UseState } from "react";
+import React, { useState } from 'react';
 import api from '../api/axios';
 
-const Login = ({alAutenticar}) => {
-    const [formData, setFormData,] = UseState({
+const Login = ({onLoginSuccess}) => {
+    const [formData, setFormData,] = useState({
         email: '',
         password: '',
         // este será el tenant por defecto
         tenantId: ''
     });
 
-    const [error,setError] = UseState('');
-    const {loading, setLoading} = UseState(false);
+    const [error,setError] = useState('');
+    const {loading, setLoading} = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit =(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        setLoading(false);
+        setLoading(true);
 
         try {
-            const response = await.post('/auth/login', {
+            const response = await api.post('/auth/login', {
                 email: formData.email,
                 password: formData.password
             }, {
@@ -33,8 +33,8 @@ const Login = ({alAutenticar}) => {
 
             if(token) {
                 //guardamos la sesion en local storage
-                localStorage.setItem('accessToken, token');
-                localStorage.setItem('tenantId, formData.tenantId');
+                localStorage.setItem('accessToken', token);
+                localStorage.setItem('tenantId', formData.tenantId);
 
                 //avisamos de que el usuario ya está dentro de la sesion
                 onLoginSuccess();

@@ -1,21 +1,26 @@
-import React, {UseState} from "react";
+import React, { useState } from 'react';
 import api from '../api/axios';
 
 const Register = ({ onRegisterSuccess }) => {
-    const [formData, setFormData] = UseState({
+    const [formData, setFormData] = useState({
         nombre: '',
         email: '',
         password: '',
         tenantId: ''
     });
 
-const [error, setError] = UseState('');
+const [error, setError] = useState('');
 const [success, setSuccess] = useState(false);
 
 const handleChange = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        setSuccess(false);
 
     try {
         await api.post('/auth/register', {
@@ -115,6 +120,8 @@ setError(err.response?.data?.message || 'Error al registrar el usuario. Comprueb
             </div>
         </div>
     );
+};
+
 };
 
 export default Register;

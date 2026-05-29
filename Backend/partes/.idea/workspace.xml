@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="56afe2e4-370d-49d0-8750-6c146fa38249" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Backend/partes/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/partes/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/partes/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/partes/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/partes/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/partes/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/partes/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/partes/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/partes/src/test/java/com/gestion/partes/PartesApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/partes/src/test/java/com/gestion/partes/PartesApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/App.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/components/FormularioIncidencia.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/components/ListaIncidencia.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/services/incidenciaService.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/gestion-incidencias/src/setupTests.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3C1kru36Ttq3yaYgDusdEELpNNl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.PartesApplication.executor": "Run",
+    "Maven.partes [clean].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/VersusPC/gestionIncidencias/Backend/partes",
+    "to.speed.mode.migration.done": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56afe2e4-370d-49d0-8750-6c146fa38249" name="Changes" comment="" />
+      <created>1775560665966</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775560665966</updated>
+    </task>
+    <servers />
+  </component>
+</project>
