@@ -5,11 +5,11 @@ import axios from 'axios';
     baseURL: 'http://localhost:8080/api/',
 });
 */
-/ 1. Creamos la instancia centralizada. 
+// 1. Creamos la instancia centralizada. 
 // Si está en Vercel, usará la variable de entorno de producción.
 // Si estás en tu computadora, usará el localhost:8080 por defecto.
 const api = axios.create({
-    baseURL: import.meta.env.REACT_APP_API_URL || 'http://localhost:8080/api/',
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8080/api/',
 });
 
 // 2. Interceptor mágico: antes de que salga CUALQUIER petición hacia el backend,
